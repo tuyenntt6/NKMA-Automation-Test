@@ -1,27 +1,25 @@
 package com.nkma.nangkhieumaianh.pages.users;
 
+import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-
 import java.util.List;
 
-public class EventPage {
-    private WebDriver driver;
-
+public class EventPage extends BasePage {
     @FindBy(xpath = "//a[contains(@href,'su-kien')]")
     private List<WebElement> events;
 
-    public EventPage(WebDriver driver){
-        this.driver = driver;
-        PageFactory.initElements(driver,this);
+    public EventPage(WebDriver driver, ExtentTest logger){
+        super(driver, logger);
     }
 
     public void navigate(){
         String url = "https://www.nangkhieumyanh.edu.vn/";
         this.driver.get(url);
+        this.logger.log(LogStatus.INFO,"Navigate to:"+url);
     }
 
     public void listEventItem(){
